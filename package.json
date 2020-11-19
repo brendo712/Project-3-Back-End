@@ -1,0 +1,26 @@
+{
+  "name": "project-3-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendo712/Project-3-Back-End.git"
+  },
+  "author": "Jacob Cutshall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendo712/Project-3-Back-End/issues"
+  },
+  "homepage": "https://github.com/brendo712/Project-3-Back-End#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15"
+  }
+}
