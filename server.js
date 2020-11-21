@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const session = require('express-session')
 //const cors = require('cors')
 const app = express()
 const Lobby = require('./models/lobbies.js')
@@ -11,6 +12,13 @@ const mongodbURI = process.env.MONGODBURI
 
 app.use(express.json())
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialiazed: false
+  })
+)
 
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
@@ -23,9 +31,11 @@ mongoose.connection.once('open', ()=>{
 
 const lobbiesController = require('./controllers/lobbies.js')
 const usersController = require('./controllers/users.js')
+const sessionsController = require('./controllers/sessionController.js')
 
 app.use('/lobbies', lobbiesController)
 app.use('/users', usersController)
+app.use('/sessions', sessionsController)
 
 app.listen(PORT, () => {
   console.log('express listening on port', PORT)
