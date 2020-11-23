@@ -31,7 +31,7 @@ mongoose.connection.once('open', ()=>{
 
 const lobbiesController = require('./controllers/lobbies.js')
 const usersController = require('./controllers/users.js')
-const sessionsController = require('./controllers/sessionController.js')
+const sessionsController = require('./controllers/sessionsController.js')
 
 app.use('/lobbies', lobbiesController)
 app.use('/users', usersController)
