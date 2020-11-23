@@ -9,7 +9,7 @@ session.get('/new', (req, res) => {
 
 session.post('/', (req, res) => {
 	console.log(req.body)
-	User.findOne({ userName: req.body.userName }, (err, foundUser) => {
+	User.findOne({ username: req.body.username }, (err, foundUser) => {
 		if (err) {
 			res.status(400).json({ error: err.message })
 			console.log(`Unexpected issue : ${err}`)

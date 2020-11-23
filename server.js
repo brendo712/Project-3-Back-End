@@ -17,13 +17,11 @@ const corsOptions = {
     } else {
       callback(new Error('Not allowed by CORS'))
     }
-  }
+  }, credentials: true
 }
 
 app.use(cors(corsOptions))
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin": "*")
-}) 
+
 
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
