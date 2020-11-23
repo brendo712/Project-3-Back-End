@@ -1,15 +1,26 @@
 const express = require('express')
 const mongoose = require('mongoose')
-//const cors = require('cors')
+const cors = require('cors')
 const app = express()
 const Lobby = require('./models/lobbies.js')
-
-
-const PORT = 3003
-
-
+const session = require('express-session')
+require('dotenv').config()
+const PORT = process.env.PORT
+const mongodbURI = process.env.MONGODBURI
 app.use(express.json())
 
+const whitelist = ['http://localhost:3000']
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
 
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
