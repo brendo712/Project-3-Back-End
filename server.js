@@ -5,10 +5,8 @@ const cors = require('cors')
 const app = express()
 const Lobby = require('./models/lobbies.js')
 require('dotenv').config()
-
 const PORT = process.env.PORT
 const mongodbURI = process.env.MONGODBURI
-
 app.use(express.json())
 
 const whitelist = ['http://localhost:3000']
