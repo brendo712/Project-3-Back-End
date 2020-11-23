@@ -1,13 +1,13 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const session = express.Router()
-const User = require('./models/users.js')
+const User = require('../models/users.js')
 
 session.get('/new', (req, res) => {
 
 })
 
-router.post('/', (req, res) => {
+session.post('/', (req, res) => {
 	console.log(req.body)
 	User.findOne({ userName: req.body.userName }, (err, foundUser) => {
 		if (err) {
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 	})
 })
 
-router.delete('/', (req, res) => {
+session.delete('/', (req, res) => {
 	req.session.destroy(() => {
 		res.redirect('/')
 	})
