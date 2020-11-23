@@ -3,7 +3,6 @@ const users = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/users.js')
 
-
 // GET All USERS
 users.get('/', (req, res) => {
 	User.find({}, (err, foundUsers) => {
@@ -13,7 +12,6 @@ users.get('/', (req, res) => {
 		res.status(200).json(foundUsers)
 	})
 })
-
 
 // CREATE USER
 users.post('/', async (req, res) => {

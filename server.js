@@ -9,6 +9,7 @@ const PORT = process.env.PORT
 const mongodbURI = process.env.MONGODBURI
 app.use(express.json())
 
+
 const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: (origin, callback) => {
@@ -26,16 +27,18 @@ mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
 //...farther down the page
-mongoose.connect('mongodb://localhost:27017/mwlobbies', { useNewUrlParser: true , useUnifiedTopology: true})
+mongoose.connect(mongodbURI', { useNewUrlParser: true , useUnifiedTopology: true})
 mongoose.connection.once('open', ()=>{
     console.log('connected to mongoose...')
 })
 
 const lobbiesController = require('./controllers/lobbies.js')
 const usersController = require('./controllers/users.js')
+const sessionsController = require('./controllers/sessionsController.js')
 
 app.use('/lobbies', lobbiesController)
 app.use('/users', usersController)
+app.use('/sessions', sessionsController)
 
 app.listen(PORT, () => {
   console.log('express listening on port', PORT)
