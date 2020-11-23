@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session')
-//const cors = require('cors')
+const cors = require('cors')
 const app = express()
 const Lobby = require('./models/lobbies.js')
 require('dotenv').config()
@@ -9,8 +9,21 @@ require('dotenv').config()
 const PORT = process.env.PORT
 const mongodbURI = process.env.MONGODBURI
 
-
 app.use(express.json())
+
+const whitelist = ['http://localhost:3000']
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
+
 
 app.use(
   session({
