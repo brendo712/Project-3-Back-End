@@ -9,6 +9,7 @@ const PORT = process.env.PORT
 const mongodbURI = process.env.MONGODBURI
 app.use(express.json())
 
+
 const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: (origin, callback) => {
@@ -21,7 +22,6 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
-
 
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
