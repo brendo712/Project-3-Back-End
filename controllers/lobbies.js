@@ -40,6 +40,10 @@ lobbies.post('/', async (req, res) => {
   })
 })
 
+// lobbies.put('/players/:id', (req, res) => {
+// 	Lobby.find
+// })
+
 lobbies.put('/:id', (req, res) => {
   Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedLobby) => {
     if (err) {

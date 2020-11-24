@@ -3,9 +3,6 @@ const bcrypt = require('bcrypt')
 const session = express.Router()
 const User = require('../models/users.js')
 
-session.get('/new', (req, res) => {
-
-})
 
 session.post('/', (req, res) => {
 	console.log(req.body)
@@ -22,9 +19,8 @@ session.post('/', (req, res) => {
 				req.session.currentUser = foundUser
 				res.status(200).json(foundUser)
 				console.log(`Logged in succesfuly : ${foundUser}`)
-				res.redirect('/')
 			} else {
-				res.status(400)
+				res.status(400).json({error: "no user or password found"})
 				console.log('Incorrect password or username')
 
 			}
