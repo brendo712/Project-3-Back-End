@@ -36,9 +36,13 @@ lobbies.post('/', async (req, res) => {
       res.status(400).json({ error: error.message })
     }
     console.log('Lobby Created:', createdLobby)
-    res.status(200).send(createdLobby) //  .json() will send proper headers in response so client knows it's json coming back
+    res.status(200).json(createdLobby) //  .json() will send proper headers in response so client knows it's json coming back
   })
 })
+
+// lobbies.put('/players/:id', (req, res) => {
+// 	Lobby.find
+// })
 
 lobbies.put('/:id', (req, res) => {
   Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedLobby) => {

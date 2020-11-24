@@ -21,7 +21,13 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
-
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialiazed: false
+  })
+)
 
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))

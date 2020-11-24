@@ -22,7 +22,7 @@ users.post('/', async (req, res) => {
 			res.status(400).json({ error: err.message })
 		}
 		console.log(`User Created : ${createdUser}`)
-		res.status(200).json(createdUser)
+		res.status(201).json(createdUser)
 	})
 })
 
