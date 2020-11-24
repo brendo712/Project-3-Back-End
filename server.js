@@ -9,7 +9,7 @@ const PORT = process.env.PORT
 const mongodbURI = process.env.MONGODBURI
 app.use(express.json())
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3003', 'http://localhost:5000']
+const whitelist = ['http://localhost:3000', 'http://localhost:3003', 'http://localhost:5000', 'https://project-3-group-7-front.herokuapp.com']
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
